@@ -2,7 +2,7 @@
  * PROJECT      : Database Wisata
  * MODULE       : Aplikasi INPUT - Sedulur Wisata Batu Malang
  * FILE         : app.js
- * VERSION      : 1.0.0
+ * VERSION      : 1.1.0
  * AUTHOR       : Jimmy
  * CREATED      : 28/08/2026
  * LAST UPDATE  : 28/08/2026
@@ -11,7 +11,9 @@
  * ----------------------------------------------------------------
  * Logika halaman Input Database Wisata khusus grup "Sedulur
  * Wisata Batu Malang":
- * - Memuat master kategori & kota dari Apps Script API.
+ * - Memuat master kategori dari Apps Script API.
+ * - Kota/Kabupaten diisi manual (input teks bebas, bukan
+ *   dropdown master).
  * - Validasi & kirim data baru (saveDatabase) ke API.
  * - Nomor WhatsApp dirapikan di preview sebelum dikirim
  *   (normalisasi final tetap dilakukan di server/Apps Script).
@@ -28,6 +30,10 @@
  * - Field "Dicatat Oleh" dihapus dari form, CREATED_BY otomatis
  *   memakai CREATED_BY_TETAP.
  *
+ * v1.1.0
+ * - Field Kota/Kabupaten diubah dari dropdown master menjadi
+ *   input teks manual. loadKota() dihapus.
+ *
  ******************************************************************/
 
 /******************************************************************
@@ -35,8 +41,8 @@
  * ----------------------------------------------------------------
  *
  * Required
- * - index.html (elemen form: kategori, nama, kota, namaKontak,
- *   whatsapp, previewId, statusBar)
+ * - index.html (elemen form: kategori, nama, kota (input teks),
+ *   namaKontak, whatsapp, previewId, statusBar)
  *
  ******************************************************************/
 
@@ -46,7 +52,6 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbwgLNELtjqmupbRBaM7zXdoVMSNOtd4Y3CIIEOYWNgNmQHYFxb3aj2prmx98EbzL4zJ/exec";
 
 const ACTION_GET_KATEGORI = "getKategori";
-const ACTION_GET_KOTA = "getKota";
 const ACTION_SAVE_DATABASE = "saveDatabase";
 
 const STATUS_SHOW_DURATION = 3200;
@@ -59,7 +64,7 @@ const CREATED_BY_TETAP = "Sedulur Wisata Batu Malang";
  ******************************************************************/
 const formInput = document.getElementById("formInput");
 const kategoriSelect = document.getElementById("kategori");
-const kotaSelect = document.getElementById("kota");
+const kotaInput = document.getElementById("kota");
 const previewId = document.getElementById("previewId");
 const btnSubmit = document.getElementById("btnSubmit");
 const statusBar = document.getElementById("statusBar");
@@ -71,7 +76,6 @@ const statusBar = document.getElementById("statusBar");
  ******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
   loadKategori();
-  loadKota();
   formInput.addEventListener("submit", handleSubmit);
 });
 
@@ -91,22 +95,6 @@ function loadKategori() {
     .catch(function (error) {
       console.error("[loadKategori]", error);
       showStatus("Gagal memuat kategori.", "error");
-    });
-}
-
-/******************************************************************
- * Function : loadKota()
- * Tujuan   : Mengambil daftar kota/kabupaten aktif dan mengisi
- *            dropdown.
- ******************************************************************/
-function loadKota() {
-  fetchApi(ACTION_GET_KOTA)
-    .then(function (result) {
-      fillDropdown(kotaSelect, result.data, "kotaKabupaten", "Pilih kota/kabupaten");
-    })
-    .catch(function (error) {
-      console.error("[loadKota]", error);
-      showStatus("Gagal memuat kota/kabupaten.", "error");
     });
 }
 
@@ -148,13 +136,13 @@ function handleSubmit(event) {
     action: ACTION_SAVE_DATABASE,
     kategori: kategoriSelect.value,
     nama: document.getElementById("nama").value,
-    kotaKabupaten: kotaSelect.value,
+    kotaKabupaten: kotaInput.value,
     namaKontak: document.getElementById("namaKontak").value,
     whatsapp: document.getElementById("whatsapp").value,
     createdBy: CREATED_BY_TETAP
   };
 
-  if (payload.kategori === "" || payload.nama.trim() === "" || payload.kotaKabupaten === "") {
+  if (payload.kategori === "" || payload.nama.trim() === "" || payload.kotaKabupaten.trim() === "") {
     showStatus("Kategori, Nama, dan Kota/Kabupaten wajib diisi.", "error");
     return;
   }
