@@ -1,7 +1,7 @@
 <!--
 ******************************************************************
 * PROJECT      : Database Wisata
-* MODULE       : Aplikasi INPUT
+* MODULE       : Aplikasi INPUT - Sedulur Wisata Batu Malang
 * FILE         : index.html
 * VERSION      : 1.0.0
 * AUTHOR       : Jimmy
@@ -10,8 +10,14 @@
 *
 * DESCRIPTION
 * ------------------------------------------------------------
-* Halaman form untuk memasukkan data wisata/pendukung wisata
-* baru ke Database Wisata.
+* Halaman form Input Database Wisata khusus untuk grup
+* "Sedulur Wisata Batu Malang". Field CREATED_BY tidak diisi
+* manual, otomatis terisi nama grup ini (lihat app.js).
+*
+* VERSION HISTORY
+* ------------------------------------------------------------
+* v1.0.0 - Initial Release, hasil duplikat dari Aplikasi INPUT
+*          utama. Field "Dicatat Oleh" dihapus dari form.
 ******************************************************************
 -->
 <!DOCTYPE html>
@@ -19,7 +25,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Input Database Wisata</title>
+<title>Database Sedulur Wisata Batu Malang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -31,7 +37,7 @@
   <header class="app-header">
     <span class="tag-dot"></span>
     <div>
-      <h1>Input Database Wisata</h1>
+      <h1>Database Sedulur Wisata Batu Malang</h1>
       <p>Tambahkan data hotel, villa, restoran, atau pendukung wisata lainnya.</p>
     </div>
   </header>
@@ -77,16 +83,20 @@
         <span class="hint">Boleh diawali 0, 62, atau +62 — akan otomatis dirapikan.</span>
       </div>
 
-      <div class="field">
-        <label for="createdBy">Dicatat Oleh <span class="optional">(opsional)</span></label>
-        <input type="text" id="createdBy" name="createdBy" placeholder="Nama kamu">
-      </div>
-
       <button type="submit" id="btnSubmit" class="btn-submit">Simpan Data</button>
 
     </form>
 
   </main>
+
+  <div class="contact-bar">
+    <span class="contact-bar__label">Butuh bantuan?</span>
+    <div class="contact-bar__links">
+      <a class="contact-link" href="https://wa.me/6285895665170?text=Hay%20Jimmy" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="contact-link" href="https://www.instagram.com/mynameisjimmy2/" target="_blank" rel="noopener">📷 Instagram</a>
+      <a class="contact-link" href="https://www.tiktok.com/@mas_jimmy_" target="_blank" rel="noopener">🎵 TikTok</a>
+    </div>
+  </div>
 
   <div id="statusBar" class="status-bar" role="status" aria-live="polite"></div>
 
