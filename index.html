@@ -1,0 +1,97 @@
+<!--
+******************************************************************
+* PROJECT      : Database Wisata
+* MODULE       : Aplikasi INPUT
+* FILE         : index.html
+* VERSION      : 1.0.0
+* AUTHOR       : Jimmy
+* CREATED      : 28/08/2026
+* LAST UPDATE  : 28/08/2026
+*
+* DESCRIPTION
+* ------------------------------------------------------------
+* Halaman form untuk memasukkan data wisata/pendukung wisata
+* baru ke Database Wisata.
+******************************************************************
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input Database Wisata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="app-header">
+    <span class="tag-dot"></span>
+    <div>
+      <h1>Input Database Wisata</h1>
+      <p>Tambahkan data hotel, villa, restoran, atau pendukung wisata lainnya.</p>
+    </div>
+  </header>
+
+  <main class="ticket">
+
+    <div class="ticket__stub">
+      <span class="ticket__label">ID</span>
+      <span class="ticket__id" id="previewId">DB??????</span>
+    </div>
+
+    <div class="ticket__perforation"></div>
+
+    <form id="formInput" class="ticket__body">
+
+      <div class="field">
+        <label for="kategori">Kategori <span class="required">*</span></label>
+        <select id="kategori" name="kategori" required>
+          <option value="" disabled selected>Memuat kategori...</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="nama">Nama <span class="required">*</span></label>
+        <input type="text" id="nama" name="nama" placeholder="Contoh: Hotel ABC" required>
+      </div>
+
+      <div class="field">
+        <label for="kota">Kota / Kabupaten <span class="required">*</span></label>
+        <select id="kota" name="kota" required>
+          <option value="" disabled selected>Memuat kota...</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="namaKontak">Nama Kontak <span class="optional">(opsional)</span></label>
+        <input type="text" id="namaKontak" name="namaKontak" placeholder="Contoh: Budi">
+      </div>
+
+      <div class="field">
+        <label for="whatsapp">WhatsApp <span class="optional">(opsional)</span></label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="0812xxxxxxxx / 62812xxxxxxxx">
+        <span class="hint">Boleh diawali 0, 62, atau +62 — akan otomatis dirapikan.</span>
+      </div>
+
+      <div class="field">
+        <label for="createdBy">Dicatat Oleh <span class="optional">(opsional)</span></label>
+        <input type="text" id="createdBy" name="createdBy" placeholder="Nama kamu">
+      </div>
+
+      <button type="submit" id="btnSubmit" class="btn-submit">Simpan Data</button>
+
+    </form>
+
+  </main>
+
+  <div id="statusBar" class="status-bar" role="status" aria-live="polite"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

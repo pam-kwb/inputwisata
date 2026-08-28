@@ -1,0 +1,255 @@
+/******************************************************************
+ * PROJECT      : Database Wisata
+ * MODULE       : Aplikasi INPUT
+ * FILE         : style.css
+ * VERSION      : 1.0.0
+ * AUTHOR       : Jimmy
+ * CREATED      : 28/08/2026
+ * LAST UPDATE  : 28/08/2026
+ *
+ * DESCRIPTION
+ * ----------------------------------------------------------------
+ * Styling halaman Input Database Wisata. Tema "ticket stub":
+ * form disajikan seperti tag/tiket perjalanan.
+ ******************************************************************/
+
+/******************************************************************
+ * CONFIGURATION - DESIGN TOKENS
+ * ----------------------------------------------------------------
+ ******************************************************************/
+:root {
+  --paper: #FAF6EE;
+  --panel: #FFFFFF;
+  --ink: #22301F;
+  --ink-soft: #5B6B54;
+  --line: #DAD2BF;
+  --trail: #2F6F4E;
+  --trail-dark: #1F4D35;
+  --amber: #D98E2C;
+  --whatsapp: #25D366;
+  --danger: #B3432B;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius: 14px;
+}
+
+/******************************************************************
+ * SECTION - RESET & BASE
+ ******************************************************************/
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 32px 20px 100px;
+}
+
+/******************************************************************
+ * SECTION - HEADER
+ ******************************************************************/
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.tag-dot {
+  width: 12px;
+  height: 12px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--trail);
+  flex-shrink: 0;
+}
+
+.app-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/******************************************************************
+ * SECTION - TICKET CARD
+ ******************************************************************/
+.ticket {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(34, 48, 31, 0.08);
+  overflow: hidden;
+}
+
+.ticket__stub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: var(--trail);
+  color: #fff;
+}
+
+.ticket__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+}
+
+.ticket__id {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.ticket__perforation {
+  position: relative;
+  height: 0;
+  border-top: 2px dashed var(--line);
+  margin: 0 22px;
+}
+
+.ticket__perforation::before,
+.ticket__perforation::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  background: var(--paper);
+  border-radius: 50%;
+}
+
+.ticket__perforation::before { left: -31px; }
+.ticket__perforation::after { right: -31px; }
+
+.ticket__body {
+  padding: 24px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/******************************************************************
+ * SECTION - FORM FIELDS
+ ******************************************************************/
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.required { color: var(--danger); }
+.optional { color: var(--ink-soft); font-weight: 400; }
+
+.field input,
+.field select {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--trail);
+  outline-offset: 1px;
+  background: #fff;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+/******************************************************************
+ * SECTION - BUTTON
+ ******************************************************************/
+.btn-submit {
+  margin-top: 6px;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 9px;
+  background: var(--trail);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover { background: var(--trail-dark); }
+.btn-submit:active { transform: scale(0.98); }
+.btn-submit:disabled {
+  background: var(--line);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+/******************************************************************
+ * SECTION - STATUS BAR
+ ******************************************************************/
+.status-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%) translateY(120%);
+  min-width: 260px;
+  max-width: 90vw;
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+  background: var(--ink);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease;
+  z-index: 10;
+}
+
+.status-bar.show { transform: translateX(-50%) translateY(0); }
+.status-bar.success { background: var(--trail-dark); }
+.status-bar.error { background: var(--danger); }
+
+/******************************************************************
+ * SECTION - RESPONSIVE
+ ******************************************************************/
+@media (max-width: 420px) {
+  .ticket__perforation::before { left: -20px; }
+  .ticket__perforation::after { right: -20px; }
+}
