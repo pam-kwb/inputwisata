@@ -1,6 +1,6 @@
 /******************************************************************
  * PROJECT      : Database Wisata
- * MODULE       : Aplikasi INPUT
+ * MODULE       : Aplikasi INPUT - Sedulur Wisata Batu Malang
  * FILE         : app.js
  * VERSION      : 1.0.0
  * AUTHOR       : Jimmy
@@ -9,11 +9,14 @@
  *
  * DESCRIPTION
  * ----------------------------------------------------------------
- * Logika halaman Input Database Wisata:
+ * Logika halaman Input Database Wisata khusus grup "Sedulur
+ * Wisata Batu Malang":
  * - Memuat master kategori & kota dari Apps Script API.
  * - Validasi & kirim data baru (saveDatabase) ke API.
  * - Nomor WhatsApp dirapikan di preview sebelum dikirim
  *   (normalisasi final tetap dilakukan di server/Apps Script).
+ * - CREATED_BY dikirim otomatis dari CREATED_BY_TETAP, tidak
+ *   ada input manual di form.
  ******************************************************************/
 
 /******************************************************************
@@ -21,7 +24,9 @@
  * ----------------------------------------------------------------
  *
  * v1.0.0
- * - Initial Release.
+ * - Initial Release, hasil duplikat dari Aplikasi INPUT utama.
+ * - Field "Dicatat Oleh" dihapus dari form, CREATED_BY otomatis
+ *   memakai CREATED_BY_TETAP.
  *
  ******************************************************************/
 
@@ -31,7 +36,7 @@
  *
  * Required
  * - index.html (elemen form: kategori, nama, kota, namaKontak,
- *   whatsapp, createdBy, previewId, statusBar)
+ *   whatsapp, previewId, statusBar)
  *
  ******************************************************************/
 
@@ -45,6 +50,9 @@ const ACTION_GET_KOTA = "getKota";
 const ACTION_SAVE_DATABASE = "saveDatabase";
 
 const STATUS_SHOW_DURATION = 3200;
+
+// Nama grup ini, dikirim otomatis sebagai CREATED_BY.
+const CREATED_BY_TETAP = "Sedulur Wisata Batu Malang";
 
 /******************************************************************
  * CONFIGURATION
@@ -143,7 +151,7 @@ function handleSubmit(event) {
     kotaKabupaten: kotaSelect.value,
     namaKontak: document.getElementById("namaKontak").value,
     whatsapp: document.getElementById("whatsapp").value,
-    createdBy: document.getElementById("createdBy").value
+    createdBy: CREATED_BY_TETAP
   };
 
   if (payload.kategori === "" || payload.nama.trim() === "" || payload.kotaKabupaten === "") {
