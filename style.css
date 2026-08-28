@@ -2,7 +2,7 @@
  * PROJECT      : Database Wisata
  * MODULE       : Aplikasi INPUT
  * FILE         : style.css
- * VERSION      : 1.0.0
+ * VERSION      : 1.1.0
  * AUTHOR       : Jimmy
  * CREATED      : 28/08/2026
  * LAST UPDATE  : 28/08/2026
@@ -11,6 +11,11 @@
  * ----------------------------------------------------------------
  * Styling halaman Input Database Wisata. Tema "ticket stub":
  * form disajikan seperti tag/tiket perjalanan.
+ *
+ * VERSION HISTORY
+ * ----------------------------------------------------------------
+ * v1.0.0 - Initial Release.
+ * v1.1.0 - Menambahkan styling contact-bar (WhatsApp/IG/TikTok).
  ******************************************************************/
 
 /******************************************************************
@@ -219,6 +224,47 @@ body {
   color: var(--ink-soft);
   cursor: not-allowed;
 }
+
+/******************************************************************
+ * SECTION - CONTACT BAR
+ ******************************************************************/
+.contact-bar {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.contact-bar__label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.contact-bar__links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-link {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.contact-link:hover { background: #fff; border-color: var(--trail); }
+.contact-link:active { transform: scale(0.97); }
 
 /******************************************************************
  * SECTION - STATUS BAR
